@@ -1,22 +1,25 @@
 <script setup>
 import { reactive, ref } from "vue";
 
-// ref su dung 1 doi tuong va 1 thuoc tinh
-// truy cap thuoc tinh ref: .value
-// const count = ref(0);
-// count.value = count.value + 1;
+const count = ref(1);
 
-// su dung 1 object trong do co nhieu doi tuong
-// truy cap thuoc tinh ko can .value
-const count2 = reactive(ref([]));
-const count = reactive({
-  title: "VueJS s",
-  author: "Top",
-});
+const increase = () => {
+  count.value++;
+};
+
+const submitForm = (e) => {
+  // e.preventDefault();
+  console.log(`Form submitted with count: ${count.value}`);
+};
 </script>
 
 <template>
-  <div class="red">This is {{ count.title }}</div>
+  <form @submit.prevent="submitForm">
+    <div>{{ count }}</div>
+    <!-- <button v-on:click="increase">Increase</button> -->
+    <button @click="increase" type="button">Increase</button>
+    <button type="submit">Submit</button>
+  </form>
 </template>
 
 <style>
